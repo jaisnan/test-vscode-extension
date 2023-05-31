@@ -9,4 +9,3 @@ edition = "2021"
 
 [dev-dependencies]
 proptest = "1.0.0"
-kani = { git = "https://github.com/model-checking/kani", features = ["concrete_playback"] }
