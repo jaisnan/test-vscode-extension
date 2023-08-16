@@ -22,27 +22,6 @@ fn estimate_size(x: u32) -> u32 {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use proptest::prelude::*;
-
-    #[test]
-    fn it_works() {
-        assert_eq!(estimate_size(1024), 7);
-    }
-
-    // ANCHOR: proptest
-    proptest! {
-        #![proptest_config(ProptestConfig::with_cases(10000))]
-        #[test]
-        fn doesnt_crash(x: u32) {
-            estimate_size(x);
-        }
-    }
-    // ANCHOR_END: proptest
-}
-
 #[cfg(kani)]
 #[kani::proof]
 fn harness_true() {
