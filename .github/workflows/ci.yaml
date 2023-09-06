@@ -1,9 +1,6 @@
 name: Rust CI
 
-on:
-  push:
-    branches:
-      - main  # Replace 'main' with your project's main branch name
+on: pull_request
 
 jobs:
   build:
