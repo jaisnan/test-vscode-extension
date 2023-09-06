@@ -25,7 +25,7 @@ fn estimate_size(x: u32) -> u32 {
 #[cfg(kani)]
 #[kani::proof]
 fn harness_true() {
-    assert!(1==1);
+    assert!(1 == 1);
 }
 
 #[cfg(kani)]
@@ -59,5 +59,4 @@ pub fn harness_i8() {
     assert!(!(i8_1 == i8::MIN && i8_2 == -101 && i8_3 == 0 && i8_4 == 101 && i8_5 == i8::MAX));
 }
 
-fn main() {
-}
+fn main() {}

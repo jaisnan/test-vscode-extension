@@ -1,9 +1,6 @@
 name: Rust CI
 
-on:
-  push:
-    branches:
-      - main  # Replace 'main' with your project's main branch name
+on: pull_request
 
 jobs:
   build:
@@ -14,8 +11,8 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Rust
-      uses: actions/setup-rust@v2
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@stable
 
     - name: Build and Test
       run: |
@@ -25,7 +22,7 @@ jobs:
     - name: Code Formatting Check
       run: cargo fmt -- --check
 
-kani:
+  kani:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -34,3 +31,5 @@ kani:
 
       - name: Kani run
         uses: jaisnan/kani-github-action/@update-to-latest
+        with:
+          kani-version: 0.30.0

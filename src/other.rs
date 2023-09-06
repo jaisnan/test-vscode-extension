@@ -4,7 +4,7 @@ mod test {
     #[cfg_attr(kani, kani::proof)]
     fn insert_test_80978342() {
         // Make sure the two packet numbers are not the same
-        assert!(1==1);
+        assert!(1 == 1);
     }
 }
 
