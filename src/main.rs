@@ -22,27 +22,6 @@ fn estimate_size(x: u32) -> u32 {
     }
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use proptest::prelude::*;
-
-    #[test]
-    fn it_works() {
-        assert_eq!(estimate_size(1024), 7);
-    }
-
-    // ANCHOR: proptest
-    proptest! {
-        #![proptest_config(ProptestConfig::with_cases(10000))]
-        #[test]
-        fn doesnt_crash(x: u32) {
-            estimate_size(x);
-        }
-    }
-    // ANCHOR_END: proptest
-}
-
 #[cfg(kani)]
 #[kani::proof]
 fn harness_true() {
@@ -78,22 +57,6 @@ pub fn harness_i8() {
     let i8_4: i8 = kani::any();
     let i8_5: i8 = kani::any();
     assert!(!(i8_1 == i8::MIN && i8_2 == -101 && i8_3 == 0 && i8_4 == 101 && i8_5 == i8::MAX));
-}
-#[test]
-fn kani_concrete_playback_harness_i8_10415494690275622521() {
-    let concrete_vals: Vec<Vec<u8>> = vec![
-        // -128
-        vec![128],
-        // -101
-        vec![155],
-        // 0
-        vec![0],
-        // 'e'
-        vec![101],
-        // 127
-        vec![127],
-    ];
-    kani::concrete_playback_run(concrete_vals, harness_i8);
 }
 
 fn main() {

@@ -1,0 +1,36 @@
+name: Rust CI
+
+on:
+  push:
+    branches:
+      - main  # Replace 'main' with your project's main branch name
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Rust
+      uses: actions/setup-rust@v2
+
+    - name: Build and Test
+      run: |
+        cargo build --verbose
+        cargo test --verbose
+
+    - name: Code Formatting Check
+      run: cargo fmt -- --check
+
+kani:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Kani run
+        uses: jaisnan/kani-github-action/@update-to-latest
